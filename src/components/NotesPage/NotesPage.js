@@ -12,7 +12,14 @@ class NotesPage extends Component {
         <p>Currently logged in as <b>{this.props.user.username}</b></p>
         <p>Clearance level: <b>{this.props.user.access_level}</b></p>
         <ul>
-          <li>List Notes</li>
+          {this.props.notes.map((noteItem, noteIndex) => {
+            return (
+              <li key={noteIndex}>
+                {noteItem.content}
+                <div><em>with clearance: {noteItem.access_level}</em></div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
