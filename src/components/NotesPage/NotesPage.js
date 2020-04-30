@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class NotesPage extends Component {
   componentDidMount() {
-    this.props.dispatch({type: 'FETCH_SECRETS'});
+    this.props.dispatch({type: 'GET_NOTES'});
   }
 
   render() {
