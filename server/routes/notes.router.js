@@ -4,9 +4,11 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  const queryString = `SELECT * FROM "notes";`;
+  const queryString = `SELECT * FROM "notes" WHERE "access_level" <= $1;`;
 
-  pool.query(queryString)
+  pool.query(queryString, [
+    req.user.access_level
+  ])
     .then((responseDb) => {
       res.send(responseDb.rows);
     })

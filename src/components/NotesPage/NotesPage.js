@@ -11,6 +11,10 @@ class NotesPage extends Component {
       <div>
         <p>Currently logged in as <b>{this.props.user.username}</b></p>
         <p>Clearance level: <b>{this.props.user.access_level}</b></p>
+        {this.props.user.access_level === 0 ?
+          <p>You do not have access to add notes.</p> :
+          <div><label>Additional Notes: <input placeholder="Notes" /></label></div>
+        }
         <ul>
           {this.props.notes.map((noteItem, noteIndex) => {
             return (
